@@ -1,0 +1,25 @@
+<button (click)="setRoom('room1')">room1</button>
+<button (click)="setRoom('room2')">room2</button>
+<button (click)="setRoom('room3')">room3</button>
+
+<div class="chat-messages">
+    <div *ngFor="let msg of allMessages" class="chat-messages-show-container">
+        <div class="received_withd_msg">
+          <div class="msg-cont-img">
+            <img
+              class="img-usr-msg"
+              src="{{msg?.image}}"
+              alt=""
+            />
+          </div>
+            <h1>{{msg?.username}}</h1>
+            <p>{{msg?.messageBody}}</p>
+            <span class="time_date"> {{ msg.createdAt }}</span>
+          </div>
+    </div>
+    <div class="chat-messages-create-container"> 
+      <input class="chat-messages-create-input" type="text" [(ngModel)]="message.messageBody">
+      <button  class="chat-messages-create-button" (click)="SendMessage()"> Send </button>
+    </div>
+ </div>
+

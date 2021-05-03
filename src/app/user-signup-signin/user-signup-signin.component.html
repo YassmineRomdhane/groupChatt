@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form action="#" class="sign-in-form">
+        <h2 class="title">Sign in</h2>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input #mail type="text" placeholder="e-mail" />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input #signinPassword type="password" placeholder="Password" />
+        </div>
+        <!-- <input type="submit" value="Login" class="btn solid" /> -->
+        <input (click)="login(mail.value,signinPassword.value)" type="submit" value="Login" class="btn solid" />
+        <p class="social-text">Or Sign in with social platforms</p>
+        <div class="social-media">
+          <a href="#" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </form>
+      <form action="#" class="sign-up-form">
+        <h2 class="title">Sign up</h2>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input #userName type="text" placeholder="Username" />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-envelope"></i>
+          <input #email type="email" placeholder="Email" />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input #password type="password" placeholder="Password" />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input #repeatedPassword type="password" placeholder="retypePassword" />
+        </div>
+        <input type="file"    (change)="imgUpload($event)"
+        #image  alt="Submit"  style="margin-top:1rem; margin-bottom:1rem;" />
+        <br>
+        <input (click)="register(userName.value,email.value,password.value,repeatedPassword.value,this.imageUrl)"
+        id="sign-up-sp-btn" type="submit" class="btn" value="Sign up" />
+        <p class="social-text">Or Sign up with social platforms</p>
+        <div class="social-media">
+          <a href="#" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content">
+        <h3>New here ?</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+          ex ratione. Aliquid!
+        </p>
+        <button
+        class="btn transparent"
+        (click)=signupUser()
+        
+      >
+      Sign Up
+      </button>
+      </div>
+    </div>
+    <div class="panel right-panel">
+      <div class="content">
+        <h3>One of us ?</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+          laboriosam ad deleniti.
+        </p>
+        <button (click)="signin()" class="btn transparent" id="sign-in-btn">
+          Sign in
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+<div class="d-flex" id="wrapper">
+  <div class="bg-light border-right"  id="sidebar-wrapper">
+    <div class="channels"> 
+      <button class="toggle" (click)=toggleDisplayDivIf()>></button>
+      <div class="sidebar-heading">All Channels </div>
+    </div>
+    <div class="addChannel">
+      <div class="addChannel">
+       
+       <div *ngIf="!isShowDivIf" routerLink='/userProfile' class="user-pic">
+        <div >
+          <img id="image" class="img-responsive img-rounded" src="{{userData?.imageUrl}}" alt="User picture">
+        </div>
+  
+          <div class="user-info">
+            <span class="user-name">
+              <strong>{{userData?.userName}}</strong>
+            </span>
+          </div>
+        </div>
+        
+      </div>
+
+        <div id="search" class="input-group" *ngIf="!isShowDivIf">
+          <input (keyup)="searchChannels($event.target.value)" type="text" class="form-control search-menu"
+            placeholder="Search...">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </div>
+        </div>
+            
+      <div class="container" *ngIf="!isShowDivIf">
+
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">create</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <div class="md-form">
+                  <input #name mdbInput type="text" id="form1" class="form-control">
+                  <label for="form1" class="">ChannelName</label>
+                </div>
+                <div class="md-form">
+                  <textarea #description type="text" id="form7" class="md-textarea md-textarea-auto form-control" mdbInput></textarea>
+                  <label for="form7">Description</label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button id="modalBtn" (click)="AddChannel(name.value,description.value)" type="button">Save changes</button>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      </div>
+    
+
+    <div *ngFor="let channel of channels" class="list-group list-group-flush">
+      <a  class="list-group-item list-group-item-action bg-light" (click)=toggleDisplayDivIf()
+        (click)="setRoom(channel.name,channel._id)"><div *ngIf="!isShowDivIf"> {{channel?.name}}</div></a>
+     
+          <p  *ngIf="!isShowDivIf" id="decription">{{channel.description}}</p>
+    </div>
+    
+    <div class="members" *ngIf="isShowDivIf">
+      <div>
+        <div class='memberInfo'>
+          <h2>MEMBERS</h2>
+         
+          <div *ngFor='let member of members'>
+            <h4>room name:</h4>
+            <h3>{{member?.groupName}}</h3>
+            <img  class="profile-image" src="{{member?.imageUrl}}" alt="">
+            <h2>{{member?.userName}}</h2>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
+
+
+
+
+    <div class="list-group">
+      
+
+          <a routerLink='/userProfile' class="dropdown-item waves-light" mdbWavesEffect href="#">
+            <mdb-icon class="icon" fas icon="user"></mdb-icon>Profile
+          </a>
+          <a (click)="logout()" class="dropdown-item waves-light" mdbWavesEffect href="#">
+            <mdb-icon class="icon"  fas icon="sign-out-alt"></mdb-icon>Log out
+          </a>
+        
+    
+    </div>
+  </div>
+
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <button class="btn btn-primary" id="menu-toggle"> <i class="fas fa-bars"></i></button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    </nav>
+    <div class="container-fluid">
+      <div class="chat-messages">
+        <div *ngFor="let msg of allMessages" class="chat-messages-show-container">
+          <div class="received_withd_msg">
+            <div class="msg-cont-img">
+              <img class="img-usr-msg" src="{{msg?.image}}" alt="" />
+            </div>
+            <h1>{{msg?.username}}</h1>
+            <p>{{msg?.messageBody}}</p>
+            <span class="time_date"> {{ msg.createdAt }}</span>
+          </div>
+        </div>
+        <div class="msger-inputarea">
+          <input class="msger-input" type="text" placeholder="Enter your message..." [(ngModel)]="message.messageBody">
+          <button class="msger-send-btn" (click)="SendMessage()"> Send </button>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
